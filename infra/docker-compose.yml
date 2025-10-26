@@ -1,0 +1,30 @@
+
+version: "3.9"
+services:
+  db:
+    image: ankane/pgvector:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ../database:/docker-entrypoint-initdb.d
+      - pgdata:/var/lib/postgresql/data
+    ports: ["5432:5432"]
+
+  analyzer:
+    build: ../services/analyzer
+    ports: ["9000:9000"]
+
+  backend:
+    build: ../backend
+    env_file: ../backend/.env
+    depends_on: [ db, analyzer ]
+    ports: ["8080:8080"]
+
+  frontend:
+    build: ../frontend
+    depends_on: [ backend ]
+    ports: ["5173:80"]
+
+volumes:
+  pgdata:

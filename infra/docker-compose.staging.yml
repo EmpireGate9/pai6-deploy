@@ -1,0 +1,8 @@
+
+version: "3.9"
+services:
+  backend:
+    environment:
+      CORS_ORIGIN: "https://staging.example.com"
+  frontend:
+    ports: ["5174:80"]

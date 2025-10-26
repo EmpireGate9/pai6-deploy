@@ -1,0 +1,1 @@
+export default function App(){return <div>PAI-6 Ready</div>}
