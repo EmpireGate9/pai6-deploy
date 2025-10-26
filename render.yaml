@@ -3,14 +3,13 @@ services:
     name: pai6-backend
     env: node
     rootDir: backend
-    buildCommand: "npm i"
+    buildCommand: "npm install"
     startCommand: "node src/server.js"
-    plan: free
     autoDeploy: true
     envVars:
       - key: PORT
-        value: "10000"
-      - key: DATABASE_URL
+        value: 10000
+      - key: DATABASE_URL        # أدخله من لوحة Render بعد إنشاء القاعدة
         sync: false
       - key: ANALYZER_URL
         value: "https://pai6-analyzer.onrender.com"
@@ -23,9 +22,8 @@ services:
     name: pai6-frontend
     env: static
     rootDir: frontend
-    buildCommand: "npm i && npm run build"
+    buildCommand: "npm install && npm run build"
     staticPublishPath: "dist"
-    plan: free
     autoDeploy: true
 
   - type: web
@@ -34,5 +32,4 @@ services:
     rootDir: services/analyzer
     buildCommand: "pip install -r requirements.txt"
     startCommand: "uvicorn app:app --host 0.0.0.0 --port 10000"
-    plan: free
     autoDeploy: true
