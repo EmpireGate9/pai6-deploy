@@ -9,7 +9,7 @@ services:
     envVars:
       - key: PORT
         value: 10000
-      - key: DATABASE_URL        # أدخله من لوحة Render بعد إنشاء القاعدة
+      - key: DATABASE_URL
         sync: false
       - key: ANALYZER_URL
         value: "https://pai6-analyzer.onrender.com"
